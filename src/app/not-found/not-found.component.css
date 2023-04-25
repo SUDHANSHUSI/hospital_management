@@ -1,0 +1,19 @@
+/* Center the "Page Not Found" message vertically and horizontally */
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #777;
+  }
+  

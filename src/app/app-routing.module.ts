@@ -8,6 +8,9 @@ import { ServiceComponent } from './service/service.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { DepartmentComponent } from './department/department.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -17,7 +20,10 @@ const routes: Routes = [
   {path:'service',component:ServiceComponent},
   {path:'doctor',component:DoctorComponent},
   {path:'department',component:DepartmentComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full' }
+  {path: '', redirectTo: '/home', pathMatch: 'full' },
+  {path:'login',component:LoginComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'**',component:NotFoundComponent}
 ];
 
 @NgModule({

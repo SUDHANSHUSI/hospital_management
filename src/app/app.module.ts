@@ -22,6 +22,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialModule } from '../material.module';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContactComponent,
     FooterComponent,
     HomeComponent,
-    
+    LoginComponent,
+    RegisterComponent,
+    NotFoundComponent
     
   ],
   imports: [
@@ -49,12 +55,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
-    ToastrModule.forRoot({
-      timeOut: 10000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-    }),
-    NgbModule
+    ToastrModule.forRoot(),
+    NgbModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

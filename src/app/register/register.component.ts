@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { phoneValidator } from '../shared/phoneValidation';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { phoneValidator } from '../shared/phoneValidation';
 })
 export class RegisterComponent {
 
-  constructor(private toastr: ToastrService,private router:Router) {}
+  constructor(private toastr: ToastrService,private router:Router,private auth:AuthService) {}
   hide = true;
   hide1=true;
   ngOnInit(): void {
@@ -33,15 +34,17 @@ export class RegisterComponent {
   })
 
   proceedregister() {
-    console.log(this.registrationForm)
-    if (this.registrationForm.valid) {
-      // this.service.RegisterUser(this.registrationForm.value).subscribe(result => {
-      // });
-      this.toastr.success('Please contact admin for enable access.','Registered successfully')
-      // this.router.navigate(['login'])
-    } else {
-      this.toastr.warning('Please enter valid data.')
-    }
+   const data=this.registrationForm.value
+    this.auth.register(data).subscribe((data)=>{
+      if( this.registrationForm.valid ){
+        this.toastr.success('Registration successfully.')
+        this.registrationForm.reset();
+      }else{
+        this.toastr.warning('Please enter valid data.')
+      }
+    },(err)=>{
+      this.toastr.warning(err.error.message)
+    })
   }
 
   toLogin(){

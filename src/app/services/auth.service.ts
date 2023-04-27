@@ -16,4 +16,9 @@ export class AuthService {
   login(data:any):Observable<any>{
     return this.http.post('http://localhost:5000/login',data);
   }
+  appointment(data:any):Observable<any>{
+    return this.http.post('http://localhost:5000/appointment',data);
+  }
+
+
 }

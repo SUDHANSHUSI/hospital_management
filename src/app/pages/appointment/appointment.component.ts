@@ -18,8 +18,25 @@ import { AuthService } from 'src/app/services/auth.service';
   // imports:[DatepickerAdapterComponent]
 })
 export class AppointmentComponent {
-  // registerForm: any = FormGroup;
+  registerForm: any = FormGroup;
   submitted = false;
+  bloodGroupType = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+    appointmentType = [
+      'Regular Checkup',
+      'Follow-up Visit',
+      'Telephone Consultations',
+    ];
+
+    doc = [];
+    department = [
+      { departmentName: 'cardiology', doctor: ['john die', 'martine'] },
+      {
+        departmentName: 'physiotherapy',
+        doctor: ['mitchel', 'guptil', 'smith'],
+      },
+      { departmentName: 'neurology', doctor: ['williumson'] },
+    ];
+    selectedDepartment: any;
   constructor(
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
@@ -31,12 +48,15 @@ export class AppointmentComponent {
   }
   onSubmit() {
     this.submitted = true;
+    console.log(this.selectedDepartment);
     console.log(this.registerForm.value);
     // stop here if form is invalid
     this.auth.appointment(this.registerForm.value).subscribe(
       (res) => {
         if (this.registerForm.valid) {
-          this.toastr.success('Your appointment booked.We will callback you before appointment.ThankYou.');
+          this.toastr.success(
+            'Your appointment booked.We will callback you before appointment.ThankYou.'
+          );
           this.registerForm.reset();
         } else {
           this.toastr.warning('Please enter valid data.');
@@ -47,26 +67,36 @@ export class AppointmentComponent {
       }
     );
 
-    // if (this.registerForm.invalid) {
-    //   this.toastr.warning('Enter Valid Data And try again..');
-    //   return;
-    // }
-    //True if all the fields are filled
-    // if (this.submitted) {
-    //   this.toastr.success('Your responce save successfully..');
-
-    // }
   }
   ngOnInit() {
     //Add form validations
+    this.registerForm = this.formBuilder.group({
+      fName: this.formBuilder.control('', [Validators.required]),
+      lName: this.formBuilder.control('', [Validators.required]),
+      age: this.formBuilder.control('', [Validators.required]),
+      bloodGroup: this.formBuilder.control('A+'),
+      gender: this.formBuilder.control('male', [Validators.required]),
+      phone: this.formBuilder.control('', [Validators.required]),
+      date: this.formBuilder.control('', [Validators.required]),
+      department:this.formBuilder.control (''),
+      doctorName:this.formBuilder.control (''),
+      appointmentType: this.formBuilder.control ('')
+    });
+
+    
   }
-  registerForm = this.formBuilder.group({
-    fName: ['', [Validators.required]],
-    lName: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required]],
-    date: ['', [Validators.required]],
-    message: ['', [Validators.required]],
-    gender: ['male', [Validators.required]],
-  });
+
+  getValue(event) {
+    console.log(event.target?.value);
+    this.department.forEach((res) => {
+      if (res.departmentName === event.target?.value) {
+        this.doc = res.doctor;
+      }
+    });
+    // console.log(this.doc);
+
+    // let a = ['abc','bcd']
+
+    // this.registerForm.controls.doctorName.setValue(a);
+  }
 }

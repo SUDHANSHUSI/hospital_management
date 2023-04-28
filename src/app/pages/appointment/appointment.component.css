@@ -114,3 +114,9 @@ span{
 .form-check-label{
   padding:0px 3px 0px 3px ;
 }
+form{
+  width: 100%;
+}
+hr{
+  margin: 0px;
+}

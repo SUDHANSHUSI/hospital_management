@@ -2,7 +2,6 @@
   <div class="container">
     <div class="section-title">
       <h2>Make an Appointment</h2>
-      
     </div>
     <div class="banner3">
       <div
@@ -14,24 +13,25 @@
         <div class="container">
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="row">
-              <div class="col-md-7 col-lg-5">
+              <div class="col-md-9 col-lg-6">
                 <h3 class="my-3 text-white font-weight-medium text-uppercase">
                   Book Appointment
                 </h3>
                 <div class="bg-white">
+                  <!-- ///////////////////////////////////////////////////////////////////// -->
                   <div class="form-row border-bottom">
-
                     <!-- FirstName -->
                     <div class="p-4 left border-right w-50">
                       <label class="text-inverse font-12 text-uppercase"
-                        >First Name<span class="text-danger">*</span></label
+                        >Patient first Name<span class="text-danger"
+                          >*</span
+                        ></label
                       >
                       <input
                         type="text"
                         class="border-0 p-0 font-14 form-control"
-                        placeholder="Your First Name"
+                        placeholder="First Name"
                         formControlName="fName"
-                        
                       />
                       <div
                         *ngIf="submitted && f.fName.errors"
@@ -43,18 +43,19 @@
                       </div>
                     </div>
 
-                     <!-- LastName -->
+                    <!-- LastName -->
 
                     <div class="p-4 right w-50">
                       <label class="text-inverse font-12 text-uppercase"
-                        >Last Name<span class="text-danger">*</span></label
+                        >Patient last Name<span class="text-danger"
+                          >*</span
+                        ></label
                       >
                       <input
                         type="text"
                         class="border-0 p-0 font-14 form-control"
-                        placeholder="Your Last Name"
+                        placeholder="Last Name"
                         formControlName="lName"
-                        
                       />
                       <div
                         *ngIf="submitted && f.lName.errors"
@@ -66,114 +67,192 @@
                       </div>
                     </div>
                   </div>
-                  <!-- Gender -->
-                  <div class="form-row border-bottom p-4">
-                    <label class="text-inverse font-12 text-uppercase"
-                      >Gender<span class="text-danger">*</span></label>
-                    
-                      <div>
-                        <input class="form-check-input" type="radio" name="gender" value="male" formControlName="gender"> Male
-                      
-                        <input class="form-check-input" type="radio" name="gender"value="female" formControlName="gender">Female
-              
-                        <input class="form-check-input" type="radio" name="gender" value="other" formControlName="gender">Other
-                      </div>
-                    
-                  </div>
-                  <!-- Email -->
-
-                  <div class="form-row border-bottom p-4">
-                    <label class="text-inverse font-12 text-uppercase"
-                      >Email Address<span class="text-danger">*</span></label
-                    >
-                    <input
-                      type="text"
-                      class="border-0 p-0 font-14 form-control"
-                      placeholder="Enter your Email Address"
-                      formControlName="email"
-                     
-                    />
-                    <div
-                      *ngIf="submitted && f.email['required']"
-                      class="invalid-feedback mb"
-                    >
-                      <div *ngIf="f.email.errors['required']">
-                        Email is required.
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Phone Number -->
-                  
-                  <div class="form-row border-bottom p-4">
-                    <label class="text-inverse font-12 text-uppercase"
-                      >Phone Number<span class="text-danger">*</span></label
-                    >
-                    <input
-                      type="text"
-                      class="border-0 p-0 font-14 form-control"
-                      placeholder="Enter your Phone Number"
-                      formControlName="phone"
-                      maxlength="10"
-                    />
-                    <div
-                      *ngIf="submitted && f.phone.errors"
-                      class="invalid-feedback mb"
-                    >
-                      <div *ngIf="f.phone.errors['required']">
-                        Phone is required.
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Booking Date -->
-
-                  <div class="form-row border-bottom p-4 position-relative">
-                    <label class="text-inverse font-12 text-uppercase"
-                      >Booking Date<span class="text-danger">*</span></label
-                    >
-                    <div class="input-group date">
-                      <input
-                        type="date"
-                        class="border-0 p-0 font-14 form-control"
-                        id="dp"
-                        placeholder="Select the Appointment Date"
-                        formControlName="date"
-                        
-                      />
-                      <div
-                        *ngIf="submitted && f.date.errors"
-                        class="invalid-feedback mb"
+                  <!-- /////////////////////////////////////////////////////////////////////// -->
+                  <div class="form-row border-bottom">
+                    <!-- Gender -->
+                    <div class="p-4 left border-right w-50">
+                      <label class="text-inverse font-12 text-uppercase"
+                        >Gender<span class="text-danger">*</span></label
                       >
-                        <div *ngIf="f.date.errors['required']">
-                          Date is required.
-                        </div>
+
+                      <div>
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          value="male"
+                          formControlName="gender"
+                        />
+                        Male
+
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          value="female"
+                          formControlName="gender"
+                        />Female
+
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          value="other"
+                          formControlName="gender"
+                        />Other
                       </div>
                     </div>
+
+                    <!-- Phone Number -->
+
+                    <div class="p-4 right w-50">
+                      <label class="text-inverse font-12 text-uppercase"
+                        >Patient contact number<span class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <input
+                        type="text"
+                        class="border-0 p-0 font-14 form-control"
+                        placeholder="Enter contact Number"
+                        formControlName="phone"
+                        maxlength="10"
+                      />
+                    </div>
                   </div>
-
-                  <!-- Message -->
-
-                  <div class="form-row border-bottom p-4">
+                  <!-- ///////////////////////////////////////////////////////////////// -->
+                  <div class="form-row border-bottom">
+                    <!-- Blood Group -->
+                    <div class="p-4 left border-right w-50">
+                      <label class="text-inverse font-12 text-uppercase"
+                        >Blood Group<span class="text-danger">*</span></label
+                      >
+                      <select
+                        class="border-1 p-0 font-14 form-control"
+                        aria-label="Default select example"
+                        formControlName="bloodGroup"
+                      >
+                        <option selected value="aa">
+                          Open this select menu
+                        </option>
+                        <option
+                          *ngFor="let blood of bloodGroupType; let i = index"
+                          value="{{ i + 1 }}"
+                        >
+                          {{ blood }}
+                        </option>
+                      </select>
+                    </div>
+                    <!-- Age -->
+                    <div class="p-4 right w-50">
+                      <label class="text-inverse font-12 text-uppercase"
+                        >Patient Age<span class="text-danger">*</span></label
+                      >
+                      <input
+                        type="number"
+                        class="border-0 p-0 font-14 form-control"
+                        placeholder="Enter Age Here"
+                        formControlName="age"
+                      />
+                    </div>
+                  </div>
+                  <!-- //////////////////////////////////////////////////////////////////////// -->
+                  <!-- Department -->
+                  <div class="p-4 left border-right">
                     <label class="text-inverse font-12 text-uppercase"
-                      >Message<span class="text-danger">*</span></label
+                      >Select Department<span class="text-danger"
+                        >*</span
+                      ></label
                     >
-                    <textarea
-                      col="1"
-                      row="1"
-                      class="border-0 p-0 font-weight-light font-14 form-control"
-                      placeholder="Write Down the Message"
-                      formControlName="message"
-                      
-                    ></textarea>
-                    <div
-                      *ngIf="submitted && f.message.errors"
-                      class="invalid-feedback mb"
+                    <select
+                      class="border-1 p-1 font-14 form-control"
+                      aria-label="Default select example"
+                      formControlName="department"
+                      (change)="getValue($event)"
+                      [(ngModel)]="selectedDepartment"
                     >
-                      <div *ngIf="f.message.errors['required']">
-                        Message is required.
+                      <!-- <option>Open this select menu</option> -->
+                      <option selected value="">select</option>
+                      <option
+                        *ngFor="let depart of department; let i = index"
+                        value="{{ depart.departmentName }}"
+                      >
+                        {{ depart.departmentName }}
+                      </option>
+                    </select>
+                  </div>
+                  <hr />
+
+                  <!-- ///////////////////////////////////////////////////////////////////// -->
+
+                  <!-- Doctor -->
+                  <div class="p-4 left border-right">
+                    <label class="text-inverse font-12 text-uppercase"
+                      >Select Doctor<span class="text-danger">*</span></label
+                    >
+                    <select
+                      class="border-1 p-1 font-14 form-control"
+                      aria-label="Default select example"
+                      formControlName="doctorName"
+                    >
+                      <!-- <option >Open this select menu</option> -->
+                      <!-- <div > -->
+
+                      <option *ngFor="let d of doc" value="{{ d }}">
+                        {{ d }}
+                      </option>
+                      <!-- </div> -->
+                    </select>
+                  </div>
+                  <hr />
+                  <!-- ////////////////////////////////////////////////////////////////// -->
+                  <div class="form-row border-bottom">
+                    <!-- Appointment Date -->
+                    <div class="p-4 left border-right w-50">
+                      <label class="text-inverse font-12 text-uppercase"
+                        >Appointment Date<span class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <div class="input-group date">
+                        <input
+                          type="date"
+                          class="border-0 p-0 font-14 form-control"
+                          id="dp"
+                          placeholder="Select the Appointment Date"
+                          formControlName="date"
+                        />
                       </div>
                     </div>
+
+                    <!-- Appointment type  -->
+
+                    <div class="p-4 right w-50">
+                      <label class="text-inverse font-12 text-uppercase"
+                        >Appointment Type<span class="text-danger"
+                          >*</span
+                        ></label
+                      >
+                      <select
+                        class="border-1 p-1 font-14 form-control"
+                        aria-label="Default select example"
+                        formControlName="appointmentType"
+                      >
+                        <!-- <option >Open this select menu</option> -->
+                        <option
+                          *ngFor="
+                            let appointment of appointmentType;
+                            let i = index
+                          "
+                          value="{{ i + 1 }}"
+                        >
+                          {{ appointment }}
+                        </option>
+                      </select>
+                    </div>
                   </div>
+                  <!-- ///////////////////////////////////////////////////////////////// -->
+                  <!-- Submit button -->
                   <div>
                     <button
                       type="submit"

@@ -12,11 +12,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'appointment', component: AppointmentComponent },
+  { path: 'appointment', component: AppointmentComponent ,canActivate:[AuthGuard]},
   { path: 'contact', component: ContactComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'doctor', component: DoctorComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'userProfile', component: UserProfileComponent },
+  { path: 'userProfile', component: UserProfileComponent,canActivate:[AuthGuard] },
   { path: '**', component: NotFoundComponent },
 ];
 

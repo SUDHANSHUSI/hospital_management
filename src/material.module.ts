@@ -48,7 +48,8 @@ import {MatChipsModule} from '@angular/material/chips';
         MatDialogModule ,
         MatFormFieldModule,
         MatProgressBarModule,
-        MatChipsModule
+        MatChipsModule,
+        
     ]
 })
 export class MaterialModule { }

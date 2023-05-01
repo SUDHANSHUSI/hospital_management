@@ -9,7 +9,9 @@ const appointmentSchema=new mongoose.Schema({
     gender:{type:String,required:true},
     department:{type:String,required:true},
     doctorName:{type:String,required:true},
-    appointmentType:{type:String,required:true}
+    appointmentType:{type:String,required:true},
+    canActiveAppointment:{type:Boolean},
+    userId:{type:String},
 })
 
 module.exports=mongoose.model("Appointment",appointmentSchema);

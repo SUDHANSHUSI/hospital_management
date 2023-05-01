@@ -42,32 +42,7 @@ export class AppointmentComponent {
     private formBuilder: FormBuilder,
     private auth: AuthService
   ) {}
-  //Add user form actions
-  get f() {
-    return this.registerForm.controls;
-  }
-  onSubmit() {
-    this.submitted = true;
-    console.log(this.registerForm.value);
-    console.log(this.registerForm.value);
-    // stop here if form is invalid
-    this.auth.appointment(this.registerForm.value).subscribe(
-      (res) => {
-        if (this.registerForm.valid) {
-          this.toastr.success(
-            'Your appointment booked.We will callback you before appointment.ThankYou.'
-          );
-          this.registerForm.reset();
-        } else {
-          this.toastr.warning('Please enter valid data.');
-        }
-      },
-      (err) => {
-        this.toastr.warning(err.error.message);
-      }
-    );
 
-  }
   ngOnInit() {
     //Add form validations
     this.registerForm = this.formBuilder.group({
@@ -85,6 +60,30 @@ export class AppointmentComponent {
 
     
   }
+  //Add user form actions
+  get f() {
+    return this.registerForm.controls;
+  }
+  onSubmit() {
+    this.submitted = true;
+
+    this.auth.appointment(this.registerForm.value).subscribe(
+      (res) => {
+        if (this.registerForm.valid) {
+          this.toastr.success(
+            'Your appointment booked.We will callback you before appointment.ThankYou.'
+          );
+          this.registerForm.reset();
+        } else {
+          this.toastr.warning('Please enter valid data.');
+        }
+      },
+      (err) => {
+        this.toastr.warning(err.error.message);
+      }
+    );
+  }
+ 
 
   getValue(event) {
     console.log(event.target?.value);

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +18,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router:Router
   ) {}
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
@@ -30,6 +32,7 @@ export class LoginComponent {
         if (data.success) {
           localStorage.setItem('token', data.token);
           this.toastr.success('logIn successfully....');
+          this.router.navigate(['/appointment']);
         } else {
           this.toastr.warning(data.message);
         }

@@ -35,6 +35,10 @@ const userModel = new mongoose.Schema(
       type: String,
       required: true,
     },
+    appointment:[{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Appointment'
+    }],
   },
   { timestamps: true }
 );

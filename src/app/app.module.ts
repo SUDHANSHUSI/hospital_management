@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +27,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { HeroComponent } from './pages/home/includes/hero/hero.component';
+import { AppointmentTableComponent } from './pages/user-profile/appointment-table/appointment-table.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { HeroComponent } from './pages/home/includes/hero/hero.component';
     RegisterComponent,
     NotFoundComponent,
     UserProfileComponent,
-    HeroComponent
+    HeroComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -59,8 +62,10 @@ import { HeroComponent } from './pages/home/includes/hero/hero.component';
     NgbModule,
     MaterialModule,
     HttpClientModule,
+    AppointmentTableComponent
   ],
   providers: [],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

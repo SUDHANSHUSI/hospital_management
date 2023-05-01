@@ -15,8 +15,14 @@
       </nav><!-- .navbar -->
       <a [routerLink]="'appointment'"  routerLinkActive="active"  class="appointment-btn scrollto">Make an Appointment</a>
       <a [routerLink]="'login'"  routerLinkActive="active"  class="appointment-btn scrollto">Login</a>
-      <button class="appointment-btn" mat-mini-fab matTooltip="Primary" color="primary" aria-label="Example mini fab with a heart icon">
+      <!-- <button class="appointment-btn" mat-mini-fab matTooltip="Primary" color="primary" aria-label="Example mini fab with a heart icon">
         <mat-icon>logout</mat-icon>
+        
+      </button> -->
+      <button class="appointment-btn" mat-mini-fab matTooltip="Primary" color="primary" aria-label="Example mini fab with a heart icon" (click)="userProfile()">
+        <mat-icon >account_circle</mat-icon>
+        
       </button>
+      
     </div>
   </header>

@@ -48,7 +48,7 @@ export class AppointmentComponent {
   }
   onSubmit() {
     this.submitted = true;
-    console.log(this.selectedDepartment);
+    console.log(this.registerForm.value);
     console.log(this.registerForm.value);
     // stop here if form is invalid
     this.auth.appointment(this.registerForm.value).subscribe(

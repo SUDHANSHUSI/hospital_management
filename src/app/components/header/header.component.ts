@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
  
+  constructor(private router:Router){}
+  userProfile(){
+    this.router.navigate(['/','userProfile']).then(nav => {
+      console.log(nav); // true if navigation is successful
+    }, err => {
+      console.log(err) // when there's an error
+    });
+  }
 }

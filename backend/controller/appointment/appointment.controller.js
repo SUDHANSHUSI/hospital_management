@@ -5,20 +5,23 @@ appointment=async (req,res)=>{
     try {
         
    
-    let {fName,lName,email,phone,date,message,gender}=req.body;
+    let {fName,lName,age,phone,date,department,doctorName,gender,appointmentType,bloodGroup}=req.body;
 
-    if(!fName || !lName || !email ||  !phone || !gender || !date || !message){
+    if(!fName || !lName || !age ||  !phone || !gender || !date || !department || !doctorName || !appointmentType || !bloodGroup){
         return res.status(400).json({ message: "Enter valid data.." });
       }
 
       const appointment=new appointmentModel({
         fName,
         lName,
-        email,
+        age,
         phone,
         gender,
         date,
-        message
+        department,
+        doctorName,
+        appointmentType,
+        bloodGroup
       })
 
       const data= await appointment.save()
@@ -38,3 +41,4 @@ appointment=async (req,res)=>{
 }
 
 module.exports={appointment}
+

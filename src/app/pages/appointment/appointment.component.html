@@ -132,12 +132,12 @@
                         aria-label="Default select example"
                         formControlName="bloodGroup"
                       >
-                        <option selected value="aa">
+                        <!-- <option selected value="aa">
                           Open this select menu
-                        </option>
+                        </option> -->
                         <option
                           *ngFor="let blood of bloodGroupType; let i = index"
-                          value="{{ i + 1 }}"
+                          value="{{ blood }}"
                         >
                           {{ blood }}
                         </option>
@@ -172,7 +172,7 @@
                       [(ngModel)]="selectedDepartment"
                     >
                       <!-- <option>Open this select menu</option> -->
-                      <option selected value="">select</option>
+                      <!-- <option selected value="">select</option> -->
                       <option
                         *ngFor="let depart of department; let i = index"
                         value="{{ depart.departmentName }}"
@@ -244,7 +244,7 @@
                             let appointment of appointmentType;
                             let i = index
                           "
-                          value="{{ i + 1 }}"
+                          value="{{ appointment }}"
                         >
                           {{ appointment }}
                         </option>

@@ -10,6 +10,14 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
  
   constructor(private router:Router){}
+
+  islogin(){
+    if(localStorage.getItem('token')){
+      return true;
+    }else{
+      return false;
+    }
+  }
   userProfile(){
     this.router.navigate(['/','userProfile']).then(nav => {
       console.log(nav); // true if navigation is successful

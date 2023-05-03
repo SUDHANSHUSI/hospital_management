@@ -50,6 +50,7 @@ import {MatChipsModule} from '@angular/material/chips';
         MatProgressBarModule,
         MatChipsModule,
         
+        
     ]
 })
 export class MaterialModule { }

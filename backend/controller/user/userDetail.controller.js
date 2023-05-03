@@ -5,11 +5,11 @@ const userDetail=async (req,res)=>{
         let userId=req.userId;
         if(!userId){
          return res.status(404).json({
-            message:"Enter userid"
+            message:"Invalid Token.."
           })
         }
         let user=await userModel.findById(userId);
-        res.status(200).json({
+        res.status(200).json({ 
           user,
         })
     } catch (error) {

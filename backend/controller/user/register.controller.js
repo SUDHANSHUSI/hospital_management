@@ -45,6 +45,7 @@ const register = async (req, res) => {
         pincode,
         gender,
         password: password,
+        role:'user'
       });
       const data = await newUser.save();
   

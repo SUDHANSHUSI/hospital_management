@@ -7,7 +7,11 @@ import { Renderer2 } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
+
+  role:string=''
+
   constructor(private router: Router, private renderer: Renderer2) {}
   title = 'hospital_management';
 
@@ -18,5 +22,9 @@ export class AppComponent {
       }
       this.renderer.setProperty(document.body, 'scrollTop', 0);
     });
+
+   this.role=localStorage.getItem('role');
+  //  console.log(this.role);
   }
+
 }

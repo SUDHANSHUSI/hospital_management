@@ -1,56 +1,65 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import { MatTableModule } from '@angular/material/table'  
-import {MatPaginatorModule} from "@angular/material/paginator"
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { AuthService } from 'src/app/services/auth.service';
+import {MatSort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
+
+// import {DatePipe} from "@angular/common";
+
 @Component({
   selector: 'app-appointment-table',
-  standalone:true,
   templateUrl: './appointment-table.component.html',
   styleUrls: ['./appointment-table.component.css'],
-  imports:[
-    MatTableModule,
-    MatPaginatorModule
-  ]
 })
-export class AppointmentTableComponent implements AfterViewInit,OnInit{
-  
-  appointmentForUser: PeriodicElement[] = [];
-  displayedColumns: string[] = ['position', 'name', 'age', 'gender','department','doctor','date'];
-  dataSource = new MatTableDataSource<PeriodicElement>(this.appointmentForUser);
-
+export class AppointmentTableComponent implements AfterViewInit, OnInit {
+  public dataSource!: MatTableDataSource<appointmentType>;
+  public appointments: appointmentType[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
- 
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private auth:AuthService) {
-    
-  }
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'age',
+    'gender',
+    'department',
+    'doctor',
+    'date',
+    'status'
+  ];
+
+  constructor(private auth: AuthService) {}
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
+    
   }
   ngOnInit(): void {
-    this.getAppointmentDetailForUser()
+    this.getAppointmentDetailForUser();
   }
+  
 
-  getAppointmentDetailForUser(){
-    this.auth.getAppointmentDetailForUser().subscribe((res)=>{
-      this.appointmentForUser=res;
-      console.log(this.appointmentForUser);
+  getAppointmentDetailForUser() {
+    this.auth.getAppointmentDetailForUser().subscribe((res) => {
+      this.appointments = res;
+      this.dataSource = new MatTableDataSource<appointmentType>(this.appointments);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      console.log(this.appointments);
       // console.log('');
-    })
+    });
   }
 }
-export interface PeriodicElement {
+export interface appointmentType {
   position: number;
   name: string;
   age: number;
   gender: string;
-  department:string,
-  doctor:string,
-  date:Date,
+  department: string;
+  doctor: string;
+  date: Date;
 }
 
 // const ELEMENT_DATA: PeriodicElement[] = [

@@ -21,13 +21,14 @@ const login = async (req, res) => {
       { id: userExist._id },
       process.env.JWT_SECRETKEY
     );
-    console.log(token);
+    // console.log(token);
     return res
       .status(200)
       .json({
         success: true,
         message: "LogIn successfully...+++",
         token: token,
+        role:userExist.role,
       });
   } catch (error) {
     console.log(error.message);

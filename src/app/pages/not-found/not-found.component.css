@@ -17,3 +17,9 @@
     color: #777;
   }
   
+  .container{
+    margin: 15% auto 5% 34%;
+    /* margin-left: 35%; */
+    position: sticky;
+    justify-content: center;
+  }

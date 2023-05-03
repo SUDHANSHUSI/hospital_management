@@ -29,8 +29,10 @@ export class LoginComponent {
     const data = this.loginForm.value;
     this.auth.login(data).subscribe(
       (data) => {
+        console.log(data);
         if (data.success) {
           localStorage.setItem('token', data.token);
+          localStorage.setItem('role', data.role);
           this.toastr.success('logIn successfully....');
           this.router.navigate(['/appointment']);
         } else {

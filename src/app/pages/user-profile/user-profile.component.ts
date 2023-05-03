@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import {OnInit} from '@angular/core'
+import {OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-user-profile',
@@ -31,7 +31,12 @@ userDetails
   userDetail(){
      
     this.auth.userDetail().subscribe((detail)=>{
-      this.userDetails =detail.user
+
+      if(detail){
+        this.userDetails =detail.user
+      }else{
+        this.auth.loggedOut()
+      }
     // this.email=detail.user.email
     //   this.address=detail.user.address
     //   this.phone=detail.user.phoneNum

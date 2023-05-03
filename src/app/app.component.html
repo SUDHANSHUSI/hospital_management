@@ -1,4 +1,4 @@
-<div id="topbar" class="d-flex align-items-center fixed-top">
+<div *ngIf="(role=='user'|| role==null)" id="topbar" class="d-flex align-items-center fixed-top">
   <div class="container d-flex justify-content-between">
     <div class="contact-info d-flex align-items-center">
       <i class="bi bi-envelope"></i>
@@ -14,70 +14,18 @@
   </div>
 </div>
 <!-- ======= Header ======= -->
-<app-header></app-header>
-
-<!-- End Header -->
-<!-- ======= Hero Section ======= -->
-<!-- <section id="hero" class="d-flex align-items-center">
-  <div class="container">
-    <h1>Welcome to LAPIT4HOSPITAL</h1>
-    <h2>We are team of talented and experiance Doctor</h2>
-    
-  </div>
-</section> -->
-<!-- <app-hero></app-hero> -->
-<!-- End Hero -->
+<app-header *ngIf="(role=='user'|| role==null)" ></app-header>
 
 <main id="main">
-  <!-- ======= Why Us Section ======= -->
-  <!-- <app-why-us></app-why-us> -->
-  <!-- End Why Us Section -->
-
-  <!-- ======= About Section ======= -->
-  <!-- <app-about></app-about> -->
-  <!-- End About Section -->
-
-  <!-- ======= Counts Section ======= -->
-  <!-- <app-count></app-count> -->
-  <!-- End Counts Section -->
-
-  <!-- ======= Services Section ======= -->
-  <!-- <app-service></app-service> -->
-  <!-- End Services Section -->
-
-  <!-- ======= Appointment Section ======= -->
-  <!-- <app-appointment> </app-appointment> -->
-  <!-- End Appointment Section -->
-
-  <!-- ======= Departments Section ======= -->
-  <!-- <app-department></app-department> -->
-  <!-- End Departments Section -->
-
-  <!-- ======= Doctors Section ======= -->
-  <!-- <app-doctor></app-doctor> -->
-  <!-- End Doctors Section -->
-
-  <!-- ======= Frequently Asked Questions Section ======= -->
-  <!-- <app-frequently-asked-questions></app-frequently-asked-questions> -->
-  <!-- End Frequently Asked Questions Section -->
-
-  <!-- ======= Testimonials Section ======= -->
-  <!-- <app-testimonials></app-testimonials> -->
-  <!-- End Testimonials Section -->
-
-  <!-- ======= Gallery Section ======= -->
-  <!-- <app-gallery></app-gallery> -->
-  <!-- End Gallery Section -->
-
-  <!-- ======= Contact Section ======= -->
-  <!-- <app-contact></app-contact> -->
-  <!-- End Contact Section -->
+  <app-main *ngIf="role=='hospital'"></app-main>
+  <router-outlet></router-outlet>
 </main>
-<!-- End #main -->
-<!-- ======= Footer ======= -->
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+
+<app-footer  *ngIf="role=='user'|| role==null"></app-footer>
 <!-- End Footer -->
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+<a
+  href="#"
+  class="back-to-top d-flex align-items-center justify-content-center"
+>
   <i class="bi bi-arrow-up-short"></i>
 </a>

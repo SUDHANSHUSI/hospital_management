@@ -39,18 +39,13 @@ const userModel = new mongoose.Schema(
       type:mongoose.Schema.Types.ObjectId,
       ref:'Appointment'
     }],
+    role:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Type'
+    }
   },
   { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userModel);
 
-//   firstName:new FormControl('',Validators.required),
-//     lastName:new FormControl('',Validators.required),
-//     email:new FormControl('',[Validators.required, Validators.email]),
-//     phoneNum:new FormControl('',[Validators.required, phoneValidator()]),
-//     address:new FormControl('',Validators.required),
-//     pincode:new FormControl('',Validators.required),
-//     gender:new FormControl('male'),
-//     password:new FormControl('', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+~`\-={}[\]\\|:;"'<>,.?/])\S{8,}$/)]),
-//     confirmPassword:new FormControl('',Validators.required),

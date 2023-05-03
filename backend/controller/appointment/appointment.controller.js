@@ -38,7 +38,7 @@ appointment = async (req, res) => {
       age,
       phone,
       gender,
-      date,
+      date:date.toString(),
       department,
       doctorName,
       appointmentType,

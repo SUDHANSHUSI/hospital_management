@@ -17,7 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppointmentTableComponent} from './pages/user-profile/appointment-table/appointment-table.component'
+import { AppointmentTableComponent } from './pages/user-profile/appointment-table/appointment-table.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../material.module';
@@ -27,7 +27,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { HeroComponent } from './pages/home/includes/hero/hero.component';
-import { MainComponent } from './hospital_pannel/main/main.component';
 
 
 @NgModule({
@@ -51,7 +50,7 @@ import { MainComponent } from './hospital_pannel/main/main.component';
     UserProfileComponent,
     HeroComponent,
     AppointmentTableComponent,
-    MainComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -63,9 +62,10 @@ import { MainComponent } from './hospital_pannel/main/main.component';
     NgbModule,
     MaterialModule,
     HttpClientModule,
+    
   ],
   providers: [],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

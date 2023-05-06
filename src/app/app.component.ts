@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { AfterContentInit, Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Renderer2 } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,23 @@ import { Renderer2 } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit,OnChanges,DoCheck{
 
   role:string=''
+  isMenuRequired:boolean=true;
 
-  constructor(private router: Router, private renderer: Renderer2) {}
+  constructor(private router: Router, private renderer: Renderer2,private auth:AuthService) {}
+
+  ngDoCheck(): void {
+    let currentUrl=this.router.url;
+    if(currentUrl.includes('/hospital')){
+      this.isMenuRequired=false;
+    }else{
+      this.isMenuRequired=true;
+    }
+    // this.role=this.auth.role
+    // console.log(this.role+'++++++++++++++++++++++');
+  }
   title = 'hospital_management';
 
   ngOnInit() {
@@ -22,9 +35,11 @@ export class AppComponent {
       }
       this.renderer.setProperty(document.body, 'scrollTop', 0);
     });
-
-   this.role=localStorage.getItem('role');
-  //  console.log(this.role);
+    
+  }
+  
+  ngOnChanges(){
+    
   }
 
 }

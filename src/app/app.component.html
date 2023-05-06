@@ -1,4 +1,8 @@
-<div *ngIf="(role=='user'|| role==null)" id="topbar" class="d-flex align-items-center fixed-top">
+<div
+  *ngIf="isMenuRequired"
+  id="topbar"
+  class="d-flex align-items-center fixed-top"
+>
   <div class="container d-flex justify-content-between">
     <div class="contact-info d-flex align-items-center">
       <i class="bi bi-envelope"></i>
@@ -14,14 +18,14 @@
   </div>
 </div>
 <!-- ======= Header ======= -->
-<app-header *ngIf="(role=='user'|| role==null)" ></app-header>
+<app-header *ngIf="isMenuRequired"></app-header>
 
 <main id="main">
-  <app-main *ngIf="role=='hospital'"></app-main>
+  <app-main *ngIf="role == 'hospital'"></app-main>
   <router-outlet></router-outlet>
 </main>
 
-<app-footer  *ngIf="role=='user'|| role==null"></app-footer>
+<app-footer *ngIf="isMenuRequired"></app-footer>
 <!-- End Footer -->
 <a
   href="#"

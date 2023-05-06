@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -7,10 +8,10 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
 
-  badgevisible = false;
-  badgevisibility() {
-    this.badgevisible = true;
-  }
+
+ 
+
+  
 
   role:['user','admin','hospital'];
   

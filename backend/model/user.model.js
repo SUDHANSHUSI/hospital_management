@@ -40,8 +40,9 @@ const userModel = new mongoose.Schema(
       ref:'Appointment'
     }],
     role:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:'Type'
+      type:String,
+      enum:['user','admin','hospital'],
+      default:'user'
     }
   },
   { timestamps: true }

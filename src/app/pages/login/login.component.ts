@@ -31,10 +31,20 @@ export class LoginComponent {
       (data) => {
         console.log(data);
         if (data.success) {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('role', data.role);
+          
+          console.log('role :'+data.role);
           this.toastr.success('logIn successfully....');
-          this.router.navigate(['/appointment']);
+          if(data.role=='hospital'){
+            this.auth.role='hospital'
+            localStorage.setItem('token', data.token);
+            this.router.navigate(['/hospital/main']);
+          }
+          else {
+             this.auth.role='user'
+             console.log( this.auth.role);
+             localStorage.setItem('token', data.token);
+             this.router.navigate(['/appointment']);
+          }
         } else {
           this.toastr.warning(data.message);
         }

@@ -7,6 +7,7 @@ import{Observable} from 'rxjs'
 })
 export class AuthService {
 
+  role:string=''
   constructor(private http:HttpClient) { }
  url=`http://localhost:5000/`
   register(data:any):Observable<any>{

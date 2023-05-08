@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-update-popup',
@@ -10,21 +12,15 @@ export class UpdatePopupComponent implements OnInit {
 
   
   updateForm:FormGroup
- constructor() {}
+ constructor( @Inject(MAT_DIALOG_DATA)public data: any,
+ private auth: AuthService) {}
+
 
   ngOnInit(): void {
     this.updateForm=new FormGroup({
-      fName: new FormControl(''),
-      lName: new FormControl(''),
-      age: new FormControl(''),
-      bloodGroup: new FormControl(''),
-      gender: new FormControl(''),
-      phone: new FormControl(''),
-      date: new FormControl('',[Validators.required]),
-      department:new FormControl (''),
-      doctorName:new FormControl (''),
-      appointmentType: new FormControl (''),
-      canActiveAppointment:new FormControl('',[Validators.required])
+      
+      date: new FormControl(''),
+      canActiveAppointment:new FormControl('')
     })
   }
 
@@ -36,7 +32,17 @@ export class UpdatePopupComponent implements OnInit {
     return day !== 0 && day !== 6;
   };
  
-  updatedata(){
+  editData: any;
 
+  updatedata() {
+    console.log(this.updateForm.value)
+    this.auth.updateAppointment(this.data.id,this.updateForm.value).subscribe((res) => {
+      // this.editData = res;
+      // this.updateForm.setValue({
+      //   canActiveAppointment:this.editData.canActiveAppointment,
+      //   date:this.editData.date,
+        
+      // })
+    });
   }
 }

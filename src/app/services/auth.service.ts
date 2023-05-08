@@ -60,5 +60,12 @@ export class AuthService {
     localStorage.clear()
   }
 
+  updateAppointment(id:string,data:any):Observable<any>{
+    return this.http.patch(`${this.url}appointment/:id`,data,{
+      headers:new HttpHeaders({
+        authorization:`Bearer ${localStorage.getItem('token')}`
+      })
+    })
+  }
 
 }

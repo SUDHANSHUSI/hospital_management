@@ -43,6 +43,15 @@ export class AuthService {
     })
   }
 
+
+  getAllAppointment():Observable<any>{
+    return this.http.get(`${this.url}appointment`,{
+      headers:new HttpHeaders({
+        authorization:`Bearer ${localStorage.getItem('token')}`
+      })
+    })
+  }
+
   isLoggedIn(){
     return localStorage.getItem('token');
   }

@@ -12,5 +12,19 @@ const userAppointment=async(req,res)=>{
     }
     
 }
-module.exports=userAppointment;
 
+
+const getAllAppointment=async(req,res)=>{
+    try {
+        const appointment=await appointmentModel.find({});
+        res.json({appointment,message:"Fatch data successfully.."})
+    } catch (error) {
+        console.error(error.message);
+        res.json({message:'Error while fatching data..'})
+    }
+}
+
+module.exports={
+    userAppointment,
+    getAllAppointment
+}

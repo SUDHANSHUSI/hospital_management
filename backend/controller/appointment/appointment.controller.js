@@ -1,8 +1,7 @@
-const express = require("express");
 const appointmentModel = require("../../model/appointment.model");
 const userModel = require("../../model/user.model");
 
-appointment = async (req, res) => {
+const makeAppointment =async(req, res) => {
   try {
     let {
       fName,
@@ -38,13 +37,13 @@ appointment = async (req, res) => {
       age,
       phone,
       gender,
-      date:date.toString(),
+      date: date.toString(),
       department,
       doctorName,
       appointmentType,
       bloodGroup,
-      userId:req.userId,
-      canActiveAppointment:true
+      userId: req.userId,
+      canActiveAppointment: true,
     });
 
     try {
@@ -65,7 +64,7 @@ appointment = async (req, res) => {
     } catch (err) {
       console.error(err.message);
 
-      res.status(500).send({message:"Error while submitting appointment"});
+      res.status(500).send({ message: "Error while submitting appointment" });
     }
   } catch (error) {
     console.log(error.message);
@@ -76,4 +75,6 @@ appointment = async (req, res) => {
   }
 };
 
-module.exports = { appointment };
+module.exports = {
+  makeAppointment,
+};

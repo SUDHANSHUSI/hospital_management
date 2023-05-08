@@ -55,7 +55,8 @@ export class AppointmentComponent {
       date: this.formBuilder.control('', [Validators.required]),
       department:this.formBuilder.control (''),
       doctorName:this.formBuilder.control (''),
-      appointmentType: this.formBuilder.control ('')
+      appointmentType: this.formBuilder.control (''),
+      canActiveAppointment:this.formBuilder.control(true)
     });
 
     

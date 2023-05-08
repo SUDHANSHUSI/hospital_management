@@ -10,7 +10,7 @@ const appointmentSchema = new mongoose.Schema({
   department: { type: String, required: true },
   doctorName: { type: String, required: true },
   appointmentType: { type: String, required: true },
-  canActiveAppointment: { type: Boolean },
+  canActiveAppointment: { type: Boolean,default:true },
   userId: { type: String },
 });
 

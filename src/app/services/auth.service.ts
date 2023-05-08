@@ -52,6 +52,14 @@ export class AuthService {
     })
   }
 
+  updateAppointment(id:string):Observable<any>{
+    return this.http.get(`${this.url}appointment/:id`,{
+      headers:new HttpHeaders({
+        authorization:`Bearer ${localStorage.getItem('token')}`
+      })
+    })
+  }
+
   isLoggedIn(){
     return localStorage.getItem('token');
   }

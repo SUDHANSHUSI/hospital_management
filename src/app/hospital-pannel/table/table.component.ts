@@ -51,7 +51,7 @@ export class TableComponent implements OnInit {
     this.dialog.open(UpdatePopupComponent,{
       enterAnimationDuration:'500ms',
       exitAnimationDuration:'500ms',
-      width:'30%',
+      width:'50%',
       data:{
         id:id,
       }

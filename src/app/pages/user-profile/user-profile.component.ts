@@ -16,12 +16,19 @@ email:''
 address:''
 phone:''
 userDetails
+profileDp='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp'
   constructor(private auth:AuthService,private toastr:ToastrService,private router:Router) {
     
   }
   ngOnInit(): void {
     this.userDetail();
   }
+
+  imageUpload(event:any):void{
+    const file:File=event.target.files[0];
+    
+  }
+  
   logout(){
     this.auth.loggedOut();
     this.toastr.success('Logout successfully..');

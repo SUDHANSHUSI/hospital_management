@@ -43,7 +43,7 @@ const makeAppointment =async(req, res) => {
       appointmentType,
       bloodGroup,
       userId: req.userId,
-      canActiveAppointment: true,
+      canActiveAppointment: false,
     });
 
     try {

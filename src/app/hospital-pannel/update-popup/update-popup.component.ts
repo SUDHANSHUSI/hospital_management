@@ -1,6 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,14 +14,13 @@ export class UpdatePopupComponent implements OnInit {
   
   updateForm:FormGroup
  constructor( @Inject(MAT_DIALOG_DATA)public data: any,
- private auth: AuthService) {}
+ private auth: AuthService,private toastr:ToastrService,private dailog:MatDialogRef<UpdatePopupComponent>) {}
 
 
   ngOnInit(): void {
     this.updateForm=new FormGroup({
-      
       date: new FormControl(''),
-      canActiveAppointment:new FormControl('')
+      canActiveAppointment:new FormControl('false')
     })
   }
 
@@ -36,13 +36,13 @@ export class UpdatePopupComponent implements OnInit {
 
   updatedata() {
     console.log(this.updateForm.value)
-    this.auth.updateAppointment(this.data.id,this.updateForm.value).subscribe((res) => {
-      // this.editData = res;
-      // this.updateForm.setValue({
-      //   canActiveAppointment:this.editData.canActiveAppointment,
-      //   date:this.editData.date,
-        
-      // })
-    });
+    if(this.updateForm.valid){
+      this.auth.updateAppointment(this.data.id,this.updateForm.value).subscribe((res) => {
+       this.toastr.success('Update data successfully..');
+        this.dailog.close();
+      });
+    }else{
+      this.toastr.error('Enter Valid data');
+    }
   }
 }

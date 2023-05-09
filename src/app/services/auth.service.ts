@@ -61,7 +61,15 @@ export class AuthService {
   }
 
   updateAppointment(id:string,data:any):Observable<any>{
-    return this.http.patch(`${this.url}appointment/:id`,data,{
+    return this.http.patch(`${this.url}appointment/${id}`,data,{
+      headers:new HttpHeaders({
+        authorization:`Bearer ${localStorage.getItem('token')}`
+      })
+    })
+  }
+
+  deleteAppointment(id:string):Observable<any>{
+    return this.http.delete(`${this.url}appointment/${id}`,{
       headers:new HttpHeaders({
         authorization:`Bearer ${localStorage.getItem('token')}`
       })

@@ -1,16 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/services/auth.service';
 import {MatDialog} from "@angular/material/dialog"
 import { UpdatePopupComponent } from '../update-popup/update-popup.component';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit,AfterViewInit {
   displayedColumns: string[] = ['PatientName', 'Age', 'BloodGroup', 'Date','Department','DoctorName','Gender','Phone','AppointmentType','status','Action'];
   dataSource: MatTableDataSource<UserData>;
   allAppointment:UserData[]=[];
@@ -19,12 +20,15 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private auth:AuthService , private dialog:MatDialog) {
+  constructor(private auth:AuthService , private dialog:MatDialog, private toastr:ToastrService) {
   
     this.dataSource = new MatTableDataSource<UserData>
   }
   ngOnInit(): void {
     this.getAllAppointment();
+  }
+  ngAfterViewInit(){
+    this.dataSource.sort = this.sort;
   }
 
 
@@ -48,7 +52,7 @@ export class TableComponent implements OnInit {
   }
 
   updateData(id:string){
-    this.dialog.open(UpdatePopupComponent,{
+   const popup= this.dialog.open(UpdatePopupComponent,{
       enterAnimationDuration:'500ms',
       exitAnimationDuration:'500ms',
       width:'30%',
@@ -56,6 +60,22 @@ export class TableComponent implements OnInit {
         id:id,
       }
     })
+
+    popup.afterClosed().subscribe((res)=>{
+      this.getAllAppointment();
+    })
+  }
+
+
+  deleteData(id:string){
+    if(confirm('Are you sure, you want to Delete data')){
+
+      this.auth.deleteAppointment(id).subscribe((res)=>{
+        console.log(res)
+        this.toastr.success('Delete Appointment succcessfully','Delete Appointment ')
+        this.getAllAppointment();
+      })
+    }
   }
   
 }

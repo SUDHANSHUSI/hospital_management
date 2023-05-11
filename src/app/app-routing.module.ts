@@ -32,7 +32,11 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [AllreadyLoginGuard],
   },
-  { path: 'register', component: RegisterComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [AllreadyLoginGuard],
+  },
   {
     path: 'userProfile',
     component: UserProfileComponent,

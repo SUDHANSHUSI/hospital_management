@@ -8,6 +8,7 @@ import { TableComponent } from './table/table.component';
 import { RouterModule } from '@angular/router';
 import { UpdatePopupComponent } from './update-popup/update-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DoctorListComponent } from './main/doctor-list/doctor-list.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainComponent,
     TableComponent,
     UpdatePopupComponent,
+    DoctorListComponent,
   ],
-  imports: [CommonModule, HospitalRoutingModule, MaterialModule, RouterModule,ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    HospitalRoutingModule,
+    MaterialModule,
+    RouterModule,
+    ReactiveFormsModule,
+    
+  ],
   exports: [HospitalPannelComponent, MainComponent, RouterModule],
 })
 export class HospitalModule {}

@@ -9,12 +9,12 @@ const login = async (req, res) => {
 
     let userExist = await userModel.findOne({ email: email });
     if (!userExist) {
-      return res.status(400).json({ message: "User Not Exist" });
+      return res.status(400).json({ message: "Invalid Credentials.." });
     }
 
     let checkPassword = await bcrypt.compare(password, userExist.password);
     if (!checkPassword) {
-      return res.status(404).json({ message: "Wrong Password" });
+      return res.status(404).json({ message: "Invalid Credentials.." });
     }
 
     let token = await jwt.sign(

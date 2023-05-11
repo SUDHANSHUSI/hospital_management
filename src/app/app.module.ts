@@ -24,9 +24,11 @@ import { MaterialModule } from '../material.module';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { HeroComponent } from './pages/home/includes/hero/hero.component';
+import { authInterceptor } from './services/auth-interceptor';
+import { NgxUiLoaderModule,NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 
 
 @NgModule({
@@ -62,9 +64,18 @@ import { HeroComponent } from './pages/home/includes/hero/hero.component';
     NgbModule,
     MaterialModule,
     HttpClientModule,
-    
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground:true
+    }),
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:authInterceptor,
+    multi:true
+  },
+  
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })

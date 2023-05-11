@@ -20,36 +20,20 @@ export class AuthService {
   }
 
   appointment(data:any):Observable<any>{
-    return this.http.post(`${this.url}appointment`,data,{
-      headers:new HttpHeaders({
-        authorization:`Bearer ${localStorage.getItem('token')}`
-      })
-    });
+    return this.http.post(`${this.url}appointment`,data);
   }
 
   userDetail():Observable<any>{
-    return this.http.get(`${this.url}user`,{
-      headers:new HttpHeaders({
-        authorization:`Bearer ${localStorage.getItem('token')}`
-      })
-    })
+    return this.http.get(`${this.url}user`)
   }
 
   getAppointmentDetailForUser():Observable<any>{
-    return this.http.get(`${this.url}appointment/user`,{
-      headers:new HttpHeaders({
-        authorization:`Bearer ${localStorage.getItem('token')}`
-      })
-    })
+    return this.http.get(`${this.url}appointment/user`)
   }
 
 
   getAllAppointment():Observable<any>{
-    return this.http.get(`${this.url}appointment`,{
-      headers:new HttpHeaders({
-        authorization:`Bearer ${localStorage.getItem('token')}`
-      })
-    })
+    return this.http.get(`${this.url}appointment`)
   }
 
   isLoggedIn(){

@@ -9,15 +9,26 @@
       (ngSubmit)="proceedregister()"
     >
       <!-- FirstName -->
+      <div></div>
       <mat-form-field appearance="fill" class="mat-50">
         <mat-label>FirstName</mat-label>
         <input matInput formControlName="firstName" />
+        <mat-error
+          *ngIf="
+            !registrationForm.get('firstName').valid &&
+            registrationForm.get('firstName').touched
+          "
+          >Please enter firstName</mat-error
+        >
       </mat-form-field>
 
       <!-- LastName -->
       <mat-form-field class="mat-50">
         <mat-label>LastName</mat-label>
         <input matInput formControlName="lastName" />
+        <mat-error *ngIf="registrationForm.get('lastName').invalid"
+          >Please enter lastName..</mat-error
+        >
       </mat-form-field>
 
       <!-- Email -->
@@ -29,7 +40,9 @@
             placeholder="pat@example.com"
             formControlName="email"
           />
-          <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+          <mat-error *ngIf="registrationForm.get('email').invalid"
+            >Please enter valid email..</mat-error
+          >
         </mat-form-field>
       </div>
 
@@ -37,16 +50,19 @@
       <mat-form-field class="mat-50">
         <mat-label>Pincode</mat-label>
         <input type="number" matInput formControlName="pincode" />
+        <mat-error *ngIf="registrationForm.get('pincode').invalid"
+          >Please enter valid pincode..</mat-error
+        >
       </mat-form-field>
 
       <!-- Phone -->
       <mat-form-field class="mat-50">
         <mat-label>Phone</mat-label>
-        <input matInput maxlength="10" matInput formControlName="phoneNum"  />
+        <input matInput maxlength="10" matInput formControlName="phoneNum" />
         <mat-error
-        *ngIf="registrationForm.errors?.['invalidPhone'] && getControl1('phoneNum')?.touched"
-        >Enter Only Digit..</mat-error
-      >
+          *ngIf="registrationForm.errors?.['invalidPhone'] && getControl('phoneNum')?.touched"
+          >Enter Only Digit..</mat-error
+        >
       </mat-form-field>
 
       <!-- Address -->
@@ -54,6 +70,9 @@
         <mat-label>Address</mat-label>
         <!-- <input matInput> -->
         <textarea matInput formControlName="address"></textarea>
+        <mat-error *ngIf="registrationForm.get('address').invalid"
+          >Please enter valid address..</mat-error
+        >
       </mat-form-field>
 
       <!-- Password -->
@@ -74,6 +93,9 @@
         >
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
+        <mat-error *ngIf="registrationForm.get('password').invalid"
+            >Please enter valid password..</mat-error
+          >
       </mat-form-field>
 
       <!-- confirmPassword -->

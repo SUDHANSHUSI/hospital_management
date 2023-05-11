@@ -16,16 +16,19 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   hide = true;
   constructor(
-    private formBuilder: FormBuilder,
     private auth: AuthService,
     private toastr: ToastrService,
     private router:Router
   ) {}
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('',[ Validators.required,Validators.email]),
     password: new FormControl('', Validators.required),
   });
   onSubmit() {
+    
+    console.log(this.loginForm);
+    
+    
     const data = this.loginForm.value;
     this.auth.login(data).subscribe(
       (data) => {

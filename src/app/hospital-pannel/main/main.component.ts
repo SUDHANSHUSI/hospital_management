@@ -8,11 +8,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MainComponent {
 
-
- 
-
-  
-
   role:['user','admin','hospital'];
   
 }

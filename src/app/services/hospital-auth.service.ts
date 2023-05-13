@@ -8,10 +8,26 @@ import { Observable } from 'rxjs';
 export class HospitalAuthService {
 
   constructor(private http:HttpClient) { }
-  url=`http://localhost:5000/hospital/`
+  url=`http://localhost:5000/`
 
 
-  doctorList(data,departmentId:string):Observable<any>{
-    return this.http.post(`${this.url}doctor/${departmentId}`,data);
+  doctorList():Observable<any>{
+    return this.http.get(`${this.url}hospital/doctor`);
+  }
+
+  hospitalList():Observable<any>{
+    return this.http.get(`${this.url}department`);
+  }
+
+  getDepartment(id:string):Observable<any>{
+    return this.http.get(`${this.url}department/${id}`);
+  }
+
+  createDepartment(data:any):Observable<any>{
+    return this.http.post(`${this.url}department`,data);
+  }
+
+  createDoctor(departmentId:string,data:any):Observable<any>{
+    return this.http.post(`${this.url}hospital/doctor/${departmentId}`,data)
   }
 }

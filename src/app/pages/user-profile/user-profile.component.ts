@@ -36,9 +36,8 @@ profileDp='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3
   }
 
   userDetail(){
-     
     this.auth.userDetail().subscribe((detail)=>{
-
+      console.log(detail)
       if(detail){
         this.userDetails =detail.user
       }else{

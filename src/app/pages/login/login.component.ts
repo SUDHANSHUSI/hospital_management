@@ -39,13 +39,15 @@ export class LoginComponent {
           this.toastr.success('logIn successfully....');
           if(data.role=='hospital'){
             this.auth.role='hospital'
-            localStorage.setItem('token', data.token);
+            let token:string=`Bearer ${data.token}`
+            localStorage.setItem('token', token);
             this.router.navigate(['/hospital/main']);
           }
           else {
              this.auth.role='user'
              console.log( this.auth.role);
-             localStorage.setItem('token', data.token);
+             let token:string=`Bearer ${data.token}`
+             localStorage.setItem('token', token);
              this.router.navigate(['/appointment']);
           }
         } else {

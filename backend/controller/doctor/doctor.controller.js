@@ -45,6 +45,7 @@ const addDoctor=async(req,res)=>{
           age,
           gender,
           experience,
+          isActive:false,
           departmentId:departmentId
         });
         const data = await newUser.save();
@@ -106,7 +107,7 @@ const updateDoctor=async(req,res)=>{
  */
 const allDoctor=async(req,res)=>{
     try {
-        let allDoctor = await doctorModel.find()
+        let allDoctor = await doctorModel.find().populate("departmentId")
         if(allDoctor){
             return res.status(200).json({
               status: "success",

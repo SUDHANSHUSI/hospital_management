@@ -1,6 +1,7 @@
 const express=require('express');
 const jwt=require('jsonwebtoken');
 const auth=(req,res,next)=>{
+    let token=''
     try {
         if (
             req.headers.authorization &&

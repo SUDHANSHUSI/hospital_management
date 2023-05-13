@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import{Observable} from 'rxjs'
 
 @Injectable({
@@ -8,7 +9,7 @@ import{Observable} from 'rxjs'
 export class AuthService {
 
   role:string=''
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private route:Router) { }
  url=`http://localhost:5000/`
   register(data:any):Observable<any>{
   
@@ -37,17 +38,23 @@ export class AuthService {
   }
 
   isLoggedIn(){
-    return localStorage.getItem('token');
+    let token:string=localStorage.getItem('token');
+    if(token){
+      return token.startsWith('Bearer');
+    }else{
+      return false
+    }
   }
 
   loggedOut(){
-    localStorage.clear()
+    localStorage.clear();
+    this.route.navigate([''])
   }
 
   updateAppointment(id:string,data:any):Observable<any>{
     return this.http.patch(`${this.url}appointment/${id}`,data,{
       headers:new HttpHeaders({
-        authorization:`Bearer ${localStorage.getItem('token')}`
+        authorization:`${localStorage.getItem('token')}`
       })
     })
   }

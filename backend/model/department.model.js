@@ -5,6 +5,18 @@ const departmentSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    shortDesc:{
+        type:String,
+        required:true
+    },
+    LongDesc:{
+        type:String,
+        required:true
+    },
+    isActive:{
+        type:Boolean,
+        default:false
+    },
     includeDoctors:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Doctor",

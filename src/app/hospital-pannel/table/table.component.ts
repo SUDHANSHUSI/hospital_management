@@ -75,6 +75,8 @@ export class TableComponent implements OnInit,AfterViewInit {
         this.toastr.success('Delete Appointment succcessfully','Delete Appointment ')
         this.getAllAppointment();
       })
+    }else{
+      this.getAllAppointment();
     }
   }
   

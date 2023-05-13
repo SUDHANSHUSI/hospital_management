@@ -22,7 +22,7 @@ import {MatIconModule}from "@angular/material/icon"
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatChipsModule} from '@angular/material/chips';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
     exports: [
@@ -49,7 +49,8 @@ import {MatChipsModule} from '@angular/material/chips';
         MatFormFieldModule,
         MatProgressBarModule,
         MatChipsModule,
-        
+        MatExpansionModule,
+        MatDialogModule
         
     ]
 })

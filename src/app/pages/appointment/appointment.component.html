@@ -119,10 +119,10 @@
                     <label class="text-inverse font-12 text-uppercase">Select Department<span
                         class="text-danger">*</span></label>
                     <select class="border-1 p-1 font-14 form-control" aria-label="Default select example"
-                      formControlName="department" (change)="getValue($event)" [(ngModel)]="selectedDepartment">
+                      formControlName="department" (change)="getValue($event)" >
                      
-                      <option *ngFor="let depart of department; let i = index" value="{{ depart.departmentName }}">
-                        {{ depart.departmentName }}
+                      <option *ngFor="let depart of getDepartment; let i = index" value="{{ depart.id}}">
+                        {{ depart.name }}
                       </option>
                     </select>
                     <small *ngIf="f.department.touched && f.department.errors?.required && f.department.invalid">
@@ -142,8 +142,8 @@
                     <select class="border-1 p-1 font-14 form-control" aria-label="Default select example"
                       formControlName="doctorName">
 
-                      <option *ngFor="let d of doc" value="{{ d }}">
-                        {{ d }}
+                      <option *ngFor="let doctorName of getDoctorForDepartment" value="{{ doctorName }}">
+                        Dr.{{ doctorName }}
                       </option>
                     </select>
                     <small *ngIf="f.doctorName.touched && f.doctorName.errors?.required && f.doctorName.invalid">
@@ -163,7 +163,7 @@
                       <label class="text-inverse font-12 text-uppercase">Appointment Date<span
                           class="text-danger">*</span></label>
                       <div class="input-group date">
-                        <input type="date" class="border-0 p-0 font-14 form-control" id="dp"
+                        <input type="date" [min]="minDate" class="border-0 p-0 font-14 form-control" id="dp"
                           placeholder="Select the Appointment Date" formControlName="date" />
                           <small *ngIf="f.date.touched && f.date.errors?.required && f.date.invalid">
                             Please select date..

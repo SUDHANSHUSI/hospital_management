@@ -49,7 +49,7 @@ export class DepartmentListComponent implements OnInit {
   }
 
   allDepartmentDetail(){
-    this.auth.hospitalList().subscribe((res)=>{
+    this.auth.departmentList().subscribe((res)=>{
       this.departments=res.data;
       console.log(this.departments);
       

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { HospitalAuthService } from 'src/app/services/hospital-auth.service';
 import { DoctorFormComponent } from './doctor-form/doctor-form.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-doctor-list',
@@ -14,15 +15,18 @@ import { DoctorFormComponent } from './doctor-form/doctor-form.component';
 export class DoctorListComponent implements OnInit{
 
   doctorList:Doctor[]
-  displayedColumns: string[] = ['Name', 'Email', 'Age', 'Gender','Experince','Department','isActive'];
+  displayedColumns: string[] = ['Name', 'Email', 'Age', 'Gender','Experince','Department','isActive','action'];
   dataSource = new MatTableDataSource<Doctor>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private auth:HospitalAuthService,private dailog:MatDialog){}
+  constructor(private auth:HospitalAuthService,private dailog:MatDialog, private toastr:ToastrService){}
 
   ngOnInit(): void {
     this.doctorListData();
+    this.auth.refreshRequired.subscribe((res)=>{
+       return this.doctorListData();
+    })
   }
 
   doctorListData(){
@@ -39,12 +43,26 @@ export class DoctorListComponent implements OnInit{
     })
   }
 
+   
+  updateDoctorData(id:string){
+   this.openDialogForDoctor(id)
+  }
+
+  deleteDoctorData(id:string){
+    if(confirm("Are you sure to delete the data.?")){
+      this.auth.deleteDoctorData(id).subscribe((res)=>{
+        this.toastr.success("Delete data successfully..","Delete request")
+      })
+      this.doctorListData();
+    }
+  }
+
   openDialogForDoctor(doctorId:string){
     this.dailog.open(DoctorFormComponent,{
       enterAnimationDuration:"500ms",
       exitAnimationDuration:'500ms',
       width:'40%',
-      data:doctorId
+      data:{doctorId}
     })
   }
 
